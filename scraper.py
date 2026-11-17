@@ -22,7 +22,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (isiklik piletiteavitus, 1 paring paevas)"
 
 DATE_RE = re.compile(r"(\d{2}\.\d{2}\.\d{4} \d{2}:\d{2})")
 SEATS_RE = re.compile(r"Available seats:\s*(\d+)")
-PERF_LINK_RE = re.compile(r"piletimaailm\.com/(?:[a-z]{2}/)?performances/(\d+)")
+PERF_LINK_RE = re.compile(r"(?:performances|lavastus/p)/(\d+)")
 
 
 def load_json(path, default):
