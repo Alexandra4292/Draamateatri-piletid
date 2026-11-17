@@ -4,5 +4,5 @@
   ],
   "performance_ids": [],
   "only_titles": [],
-  "send_when_nothing_new": false
+ "send_when_nothing_new": true
 }
