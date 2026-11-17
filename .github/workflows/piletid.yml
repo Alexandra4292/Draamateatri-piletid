@@ -1,0 +1,37 @@
+name: Draamateatri piletid
+
+on:
+  schedule:
+    # 03:00 UTC = 06:00 suveajal, 04:00 UTC = 06:00 talveajal.
+    # Skript ise kontrollib, et sõnum läheks välja ainult üks kord päevas.
+    - cron: "0 3,4 * * *"
+  workflow_dispatch: {}   # võimaldab käsitsi käivitada
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests beautifulsoup4
+
+      - name: Kontrolli pileteid
+        run: python scraper.py
+        env:
+          WHATSAPP_PHONE: ${{ secrets.WHATSAPP_PHONE }}
+          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+
+      - name: Salvesta seis
+        run: |
+          git config user.name "piletibot"
+          git config user.email "piletibot@users.noreply.github.com"
+          git add state.json
+          git diff --cached --quiet || git commit -m "Piletiseis $(date -u +%F)"
+          git push
