@@ -1,7 +1,8 @@
 """
 Draamateatri piletiteavitus.
-Käib läbi Piletimaailma lavastuste lehed, leiab etendused, kus on vabu kohti,
-võrdleb eelmise päeva seisuga ja saadab uued saadavused telefoni (ntfy).
+Loeb Draamateatri mängukava, leiab etendused, mille juures on Piletimaailma
+ostulink (st pileteid on saada), võrdleb eelmise seisuga ja saadab uued
+saadavused telefoni (ntfy).
 """
 import json
 import os
@@ -12,17 +13,17 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString, Tag
 
-BASE = "https://www.piletimaailm.com"
 STATE_FILE = "state.json"
 CONFIG_FILE = "config.json"
 TZ = ZoneInfo("Europe/Tallinn")
 HEADERS = {"User-Agent": "Mozilla/5.0 (isiklik piletiteavitus, 1 paring paevas)"}
+DEFAULT_PAGE = "https://www.draamateater.ee/mangukava/?tickets=available"
 
-DATE_RE = re.compile(r"(\d{2}\.\d{2}\.\d{4} \d{2}:\d{2})")
-SEATS_RE = re.compile(r"Available seats:\s*(\d+)")
-PERF_LINK_RE = re.compile(r"(?:performances|lavastus/p)/(\d+)")
+# Kuupäeva rida mängukavas, nt "Tu 17.11", "K 18.11" või lihtsalt "17.11"
+DATE_RE = re.compile(r"^(?:[^\W\d]{1,3}\.?\s+)?(\d{2})\.(\d{2})(?![.\d])")
+TIME_RE = re.compile(r"^(\d{1,2})[:.](\d{2})$")
 
 
 def load_json(path, default):
@@ -38,49 +39,40 @@ def save_json(path, data):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-def get(url):
-    r = requests.get(url, headers=HEADERS, timeout=30)
-    r.raise_for_status()
-    return r.text
+def full_date(day, month, now):
+    year = now.year if int(month) >= now.month else now.year + 1
+    return f"{day}.{month}.{year}"
 
 
-def discover_performance_ids(source_pages):
-    """Otsib antud lehtedelt (nt Draamateatri mängukava) kõik Piletimaailma lavastuse lingid."""
-    ids = set()
-    for page in source_pages:
-        try:
-            ids.update(PERF_LINK_RE.findall(get(page)))
-        except requests.RequestException as e:
-            print(f"Ei saanud lugeda {page}: {e}")
-        time.sleep(1)
-    return ids
-
-
-def parse_performance(pid):
-    """Tagastab (pealkiri, {"PP.KK.AAAA HH:MM": vabu_kohti})."""
-    html = get(f"{BASE}/performances/{pid}?lang=en_US")
+def parse_schedule(html, now):
+    """Tagastab {ostulink: {"date", "time", "title"}} kõigi etenduste kohta,
+    mille juures on Piletimaailma ostulink."""
     soup = BeautifulSoup(html, "html.parser")
+    for t in soup(["script", "style", "noscript"]):
+        t.decompose()
 
-    h1 = soup.find("h1")
-    if h1 and h1.get_text(strip=True):
-        title = h1.get_text(strip=True)
-    elif soup.title:
-        title = soup.title.get_text(strip=True)
-    else:
-        title = f"Lavastus {pid}"
-
-    lines = [l.strip() for l in soup.get_text("\n").splitlines() if l.strip()]
-    shows, current = {}, None
-    for line in lines:
-        d = DATE_RE.search(line)
-        if d and len(line) < 30:  # kuupäeva rida, nt "Wed 19.11.2025 19:00"
-            current = d.group(1)
-            continue
-        s = SEATS_RE.search(line)
-        if s and current:
-            shows[current] = int(s.group(1))
-            current = None
-    return title, shows
+    items = {}
+    date = title = clock = None
+    for el in soup.descendants:
+        if isinstance(el, NavigableString):
+            text = el.strip()
+            if not text or len(text) > 60:
+                continue
+            m = DATE_RE.match(text)
+            if m:
+                date = full_date(m.group(1), m.group(2), now)
+                continue
+            t = TIME_RE.match(text)
+            if t:
+                clock = f"{int(t.group(1)):02d}:{t.group(2)}"
+        elif isinstance(el, Tag) and el.name == "a":
+            href = el.get("href", "")
+            if "lavastus/p/" in href:
+                title = el.get_text(" ", strip=True) or title
+            elif "piletimaailm" in href and "performances" in href and date:
+                link = href.split("?")[0]
+                items[link] = {"date": date, "time": clock or "", "title": title or "Etendus"}
+    return items
 
 
 def send_notification(text, click_url=None):
@@ -89,7 +81,6 @@ def send_notification(text, click_url=None):
     if not topic:
         print("NTFY_TOPIC puudub, sõnum oleks olnud:\n" + text)
         return
-    # ntfy lubab kuni ~4000 baiti sõnumi kohta, pikad jagatakse osadeks
     chunks, buf = [], ""
     for block in text.split("\n\n"):
         if len((buf + block).encode("utf-8")) > 3500:
@@ -113,10 +104,15 @@ def send_notification(text, click_url=None):
         time.sleep(1)
 
 
+def sort_key(item):
+    d = datetime.strptime(item["date"], "%d.%m.%Y")
+    return (d, item["time"])
+
+
 def main():
     now = datetime.now(TZ)
     today = now.strftime("%Y-%m-%d")
-    state = load_json(STATE_FILE, {"last_sent": None, "performances": {}})
+    state = load_json(STATE_FILE, {})
     config = load_json(CONFIG_FILE, {})
 
     # Ajastatud käivitus: saada ainult kell 6-8 Tallinna aja järgi ja üks kord päevas
@@ -125,52 +121,45 @@ def main():
             print(f"Vahele jäetud (kell {now:%H:%M}, viimati saadetud {state.get('last_sent')})")
             return
 
-    ids = set(str(i) for i in config.get("performance_ids", []))
-    ids |= discover_performance_ids(config.get("source_pages", []))
-    only = [t.lower() for t in config.get("only_titles", [])]
-    print(f"Kontrollin {len(ids)} lavastust")
-
-    new_items = []
-    for pid in sorted(ids):
+    current = {}
+    for page in config.get("source_pages") or [DEFAULT_PAGE]:
         try:
-            title, shows = parse_performance(pid)
+            current.update(parse_schedule(requests.get(page, headers=HEADERS, timeout=30).text, now))
         except requests.RequestException as e:
-            print(f"Viga lavastusega {pid}: {e}")
-            continue
+            print(f"Ei saanud lugeda {page}: {e}")
+            return  # seisu ei kirjutata üle, kui leht ei avanenud
         time.sleep(1)
 
-        if only and not any(t in title.lower() for t in only):
-            continue
+    only = [t.lower() for t in config.get("only_titles", [])]
+    if only:
+        current = {k: v for k, v in current.items() if any(t in v["title"].lower() for t in only)}
 
-        # Jäta minevikus olevad etendused välja
-        shows = {
-            d: s for d, s in shows.items()
-            if datetime.strptime(d, "%d.%m.%Y %H:%M").replace(tzinfo=TZ) > now
-        }
-        prev = state["performances"].get(pid, {}).get("shows", {})
-        fresh = [
-            (d, s) for d, s in shows.items()
-            if s > 0 and (d not in prev or prev[d] == 0)
-        ]
-        if fresh:
-            fresh.sort(key=lambda x: datetime.strptime(x[0], "%d.%m.%Y %H:%M"))
-            new_items.append((title, pid, fresh))
-        state["performances"][pid] = {"title": title, "shows": shows}
+    print(f"Müügis etendusi leitud: {len(current)}")
+    for link, it in sorted(current.items(), key=lambda kv: sort_key(kv[1])):
+        print(f"  {it['date']} {it['time']} {it['title']} -> {link}")
 
-    if new_items:
-        parts = [f"Uued piletid ({now:%d.%m})"]
-        for title, pid, fresh in new_items:
-            rows = "\n".join(f"• {d} – {s} vaba kohta" for d, s in fresh)
-            parts.append(f"*{title}*\n{rows}\nOsta: {BASE}/performances/{pid}")
-        first_link = f"{BASE}/performances/{new_items[0][1]}"
-        send_notification("\n\n".join(parts), click_url=first_link)
+    prev = state.get("available", {})
+    new = {k: v for k, v in current.items() if k not in prev}
+
+    if new:
+        ordered = sorted(new.items(), key=lambda kv: sort_key(kv[1]))
+        parts = [f"Uued piletid müügis ({now:%d.%m}):"]
+        for link, it in ordered:
+            when = f"{it['date']} kell {it['time']}" if it["time"] else it["date"]
+            parts.append(f"{it['title']}\n{when}\nOsta: {link}")
+        send_notification("\n\n".join(parts), click_url=ordered[0][0])
     elif config.get("send_when_nothing_new"):
-        send_notification(f"{now:%d.%m}: Draamateatris uusi vabu pileteid ei leitud.")
+        send_notification(
+            f"{now:%d.%m}: uusi vabu pileteid ei leitud. Müügis kokku {len(current)} etendust."
+        )
 
-    state["last_sent"] = today
-    state["last_run"] = now.isoformat(timespec="seconds")
+    state = {
+        "last_sent": today,
+        "last_run": now.isoformat(timespec="seconds"),
+        "available": current,
+    }
     save_json(STATE_FILE, state)
-    print(f"Valmis, uusi lavastusi teavituses: {len(new_items)}")
+    print(f"Valmis, uusi etendusi teavituses: {len(new)}")
 
 
 if __name__ == "__main__":
