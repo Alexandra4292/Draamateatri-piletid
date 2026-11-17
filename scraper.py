@@ -1,7 +1,7 @@
 """
 Draamateatri piletiteavitus.
 Käib läbi Piletimaailma lavastuste lehed, leiab etendused, kus on vabu kohti,
-võrdleb eelmise päeva seisuga ja saadab uued saadavused WhatsAppi (CallMeBot).
+võrdleb eelmise päeva seisuga ja saadab uued saadavused telefoni (ntfy).
 """
 import json
 import os
@@ -83,28 +83,34 @@ def parse_performance(pid):
     return title, shows
 
 
-def send_whatsapp(text):
-    phone = os.environ.get("WHATSAPP_PHONE")
-    apikey = os.environ.get("CALLMEBOT_APIKEY")
-    if not phone or not apikey:
-        print("WhatsAppi andmed puuduvad, sõnum oleks olnud:\n" + text)
+def send_notification(text, click_url=None):
+    """Saadab märguande telefoni ntfy äppi."""
+    topic = os.environ.get("NTFY_TOPIC")
+    if not topic:
+        print("NTFY_TOPIC puudub, sõnum oleks olnud:\n" + text)
         return
-    # Pikad sõnumid jagatakse osadeks
+    # ntfy lubab kuni ~4000 baiti sõnumi kohta, pikad jagatakse osadeks
     chunks, buf = [], ""
     for block in text.split("\n\n"):
-        if len(buf) + len(block) > 1500:
+        if len((buf + block).encode("utf-8")) > 3500:
             chunks.append(buf)
             buf = ""
         buf += block + "\n\n"
     chunks.append(buf)
-    for chunk in chunks:
-        r = requests.get(
-            "https://api.callmebot.com/whatsapp.php",
-            params={"phone": phone, "text": chunk.strip(), "apikey": apikey},
+    for i, chunk in enumerate(chunks, 1):
+        headers = {"Title": "Draamateatri piletid", "Tags": "performing_arts"}
+        if len(chunks) > 1:
+            headers["Title"] += f" ({i}/{len(chunks)})"
+        if click_url:
+            headers["Click"] = click_url
+        r = requests.post(
+            f"https://ntfy.sh/{topic}",
+            data=chunk.strip().encode("utf-8"),
+            headers=headers,
             timeout=30,
         )
         r.raise_for_status()
-        time.sleep(3)
+        time.sleep(1)
 
 
 def main():
@@ -152,13 +158,14 @@ def main():
         state["performances"][pid] = {"title": title, "shows": shows}
 
     if new_items:
-        parts = [f"🎭 Draamateatri uued piletid ({now:%d.%m})"]
+        parts = [f"Uued piletid ({now:%d.%m})"]
         for title, pid, fresh in new_items:
             rows = "\n".join(f"• {d} – {s} vaba kohta" for d, s in fresh)
             parts.append(f"*{title}*\n{rows}\nOsta: {BASE}/performances/{pid}")
-        send_whatsapp("\n\n".join(parts))
+        first_link = f"{BASE}/performances/{new_items[0][1]}"
+        send_notification("\n\n".join(parts), click_url=first_link)
     elif config.get("send_when_nothing_new"):
-        send_whatsapp(f"🎭 {now:%d.%m}: Draamateatris uusi vabu pileteid ei leitud.")
+        send_notification(f"{now:%d.%m}: Draamateatris uusi vabu pileteid ei leitud.")
 
     state["last_sent"] = today
     state["last_run"] = now.isoformat(timespec="seconds")
