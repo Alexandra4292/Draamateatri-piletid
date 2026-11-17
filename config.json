@@ -1,8 +1,7 @@
 {
   "source_pages": [
-    "https://www.draamateater.ee/mangukava/"
+    "https://www.draamateater.ee/mangukava/?tickets=available"
   ],
-  "performance_ids": [],
   "only_titles": [],
- "send_when_nothing_new": true
+  "send_when_nothing_new": true
 }
