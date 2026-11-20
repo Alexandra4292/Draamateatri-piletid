@@ -1,0 +1,42 @@
+name: Draamateatri piletid
+
+on:
+  workflow_dispatch:      # käivitab cron-job.org (või käsitsi)
+    inputs:
+      demo:
+        description: "Saada demoteade telefoni (seisu ei muudeta)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: piletid
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests beautifulsoup4
+
+      - name: Kontrolli pileteid
+        run: python scraper.py
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          DEMO: ${{ inputs.demo }}
+
+      - name: Salvesta seis
+        run: |
+          git config user.name "piletibot"
+          git config user.email "piletibot@users.noreply.github.com"
+          git add state.json
+          git diff --cached --quiet || git commit -m "Piletiseis $(date -u +%F)"
+          git push
