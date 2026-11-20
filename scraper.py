@@ -148,6 +148,17 @@ def main():
     for e in sorted(on_sale, key=sort_key):
         print(f"  MÜÜGIS: {e['date']} {e['time']} {e['title']} -> {e['link']}")
 
+    # Demorežiim: saadab päris etenduse põhjal näidisteate, seisu ei muuda
+    if os.getenv("DEMO", "").lower() == "true":
+        sample = sorted(on_sale, key=sort_key)[:1]
+        if sample:
+            text = "🎟 VABANESID PILETID (oli välja müüdud):\n\n" + fmt(sample[0])
+            send_notification(text, click_url=sample[0]["link"])
+        else:
+            send_notification("Demo: hetkel pole ühtegi etendust müügis, aga teavitus töötab!")
+        print("Demoteade saadetud, seisu ei muudetud.")
+        return
+
     notified = state.get("notified", {})
 
     def recently_notified(link):
