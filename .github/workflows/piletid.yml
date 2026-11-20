@@ -1,7 +1,7 @@
 name: Draamateatri piletid
 
 on:
-  schedule:
+   schedule:
     # Iga 10 minuti tagant 03:00-20:50 UTC. Skript ise jätab vahele kõik,
     # mis jääb väljapoole 6:00-23:00 Tallinna aja järgi (suve- ja talveaeg).
     - cron: "*/10 3-20 * * *"
