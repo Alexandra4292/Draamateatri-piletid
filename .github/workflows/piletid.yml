@@ -2,13 +2,17 @@ name: Draamateatri piletid
 
 on:
   schedule:
-    # 03:00 UTC = 06:00 suveajal, 04:00 UTC = 06:00 talveajal.
-    # Skript ise kontrollib, et sõnum läheks välja ainult üks kord päevas.
-    - cron: "0 3,4 * * *"
+    # Iga 10 minuti tagant 03:00-20:50 UTC. Skript ise jätab vahele kõik,
+    # mis jääb väljapoole 6:00-23:00 Tallinna aja järgi (suve- ja talveaeg).
+    - cron: "*/10 3-20 * * *"
   workflow_dispatch: {}   # võimaldab käsitsi käivitada
 
 permissions:
   contents: write
+
+concurrency:
+  group: piletid
+  cancel-in-progress: false
 
 jobs:
   check:
