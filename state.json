@@ -39,7 +39,7 @@
       "title": "Pangalaen",
       "date": "21.11.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153727/buy"
     },
     "143097|23.11.2026|19:00": {
       "pid": "143097",
@@ -1029,5 +1029,7 @@
       "link": null
     }
   },
-  "notified": {}
+  "notified": {
+    "https://www.piletimaailm.com/performances/153727/buy": "2026-11-21T11:10:36+02:00"
+  }
 }
