@@ -1,8 +1,6 @@
 {
   "last_confirm": "2026-11-21",
   "productions": {
-    "152226": "Tõde ja õigus",
-    "57427": "Pangalaen",
     "143097": "Eneseabiõpik",
     "130852": "B-koondis",
     "97714": "Lehman Brothers",
@@ -10,6 +8,7 @@
     "142130": "Kõrvaltegelased",
     "135043": "Ringkäik Eesti Draamateatris",
     "124712": "Erakõnelused",
+    "152226": "Tõde ja õigus",
     "153943": "Mets",
     "141493": "Ükskord Liibanonis",
     "132769": "Skalpell",
@@ -24,23 +23,10 @@
     "149249": "500 aastat sõprust",
     "133432": "Jõulusahver",
     "148203": "Ühe naise võitlused ja metamorfoosid",
+    "57427": "Pangalaen",
     "155163": "Lavalised segadused"
   },
   "events": {
-    "152226|21.11.2026|19:00": {
-      "pid": "152226",
-      "title": "Tõde ja õigus",
-      "date": "21.11.2026",
-      "time": "19:00",
-      "link": null
-    },
-    "57427|21.11.2026|19:00": {
-      "pid": "57427",
-      "title": "Pangalaen",
-      "date": "21.11.2026",
-      "time": "19:00",
-      "link": null
-    },
     "143097|23.11.2026|19:00": {
       "pid": "143097",
       "title": "Eneseabiõpik",
