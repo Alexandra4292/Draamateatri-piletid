@@ -1,9 +1,8 @@
 {
   "last_confirm": "2026-11-23",
   "productions": {
-    "143097": "Eneseabiõpik",
-    "130852": "B-koondis",
     "97714": "Lehman Brothers",
+    "130852": "B-koondis",
     "145868": "Caligula",
     "142130": "Kõrvaltegelased",
     "135043": "Ringkäik Eesti Draamateatris",
@@ -22,25 +21,12 @@
     "121675": "Võõrad",
     "149249": "500 aastat sõprust",
     "133432": "Jõulusahver",
+    "143097": "Eneseabiõpik",
     "148203": "Ühe naise võitlused ja metamorfoosid",
     "57427": "Pangalaen",
     "155163": "Lavalised segadused"
   },
   "events": {
-    "143097|23.11.2026|19:00": {
-      "pid": "143097",
-      "title": "Eneseabiõpik",
-      "date": "23.11.2026",
-      "time": "19:00",
-      "link": null
-    },
-    "130852|23.11.2026|19:00": {
-      "pid": "130852",
-      "title": "B-koondis",
-      "date": "23.11.2026",
-      "time": "19:00",
-      "link": null
-    },
     "97714|24.11.2026|18:00": {
       "pid": "97714",
       "title": "Lehman Brothers",
