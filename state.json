@@ -228,7 +228,7 @@
       "title": "Solist",
       "date": "05.12.2026",
       "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153731/buy"
+      "link": null
     },
     "122639|07.12.2026|19:00": {
       "pid": "122639",
@@ -298,7 +298,7 @@
       "title": "Erakõnelused",
       "date": "11.12.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153685/buy"
     },
     "133432|12.12.2026|11:00": {
       "pid": "133432",
@@ -1027,6 +1027,7 @@
     "https://www.piletimaailm.com/performances/153678/buy": "2026-11-22T21:30:55+02:00",
     "https://www.piletimaailm.com/performances/153674/buy": "2026-11-22T22:10:50+02:00",
     "https://www.piletimaailm.com/performances/153684/buy": "2026-11-23T06:50:39+02:00",
-    "https://www.piletimaailm.com/performances/153731/buy": "2026-11-23T09:10:40+02:00"
+    "https://www.piletimaailm.com/performances/153731/buy": "2026-11-23T09:10:40+02:00",
+    "https://www.piletimaailm.com/performances/153685/buy": "2026-11-23T09:20:38+02:00"
   }
 }
