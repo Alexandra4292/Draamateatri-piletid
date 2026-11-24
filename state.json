@@ -67,7 +67,7 @@
       "title": "Caligula",
       "date": "26.11.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153674/buy"
     },
     "124712|26.11.2026|19:00": {
       "pid": "124712",
@@ -123,14 +123,14 @@
       "title": "Vaimude tund Koidula tänavas",
       "date": "30.11.2026",
       "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153739/buy"
+      "link": null
     },
     "97714|01.12.2026|19:00": {
       "pid": "97714",
       "title": "Lehman Brothers",
       "date": "01.12.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153698/buy"
     },
     "144945|01.12.2026|19:00": {
       "pid": "144945",
@@ -1014,6 +1014,7 @@
     "https://www.piletimaailm.com/performances/153744/buy": "2026-11-23T09:40:40+02:00",
     "https://www.piletimaailm.com/performances/152980/buy": "2026-11-23T12:01:04+02:00",
     "https://www.piletimaailm.com/performances/152978/buy": "2026-11-23T12:01:04+02:00",
-    "https://www.piletimaailm.com/performances/153739/buy": "2026-11-24T12:20:49+02:00"
+    "https://www.piletimaailm.com/performances/153739/buy": "2026-11-24T12:20:49+02:00",
+    "https://www.piletimaailm.com/performances/153698/buy": "2026-11-24T12:31:03+02:00"
   }
 }
