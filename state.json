@@ -1,8 +1,6 @@
 {
   "last_confirm": "2026-11-24",
   "productions": {
-    "97714": "Lehman Brothers",
-    "130852": "B-koondis",
     "145868": "Caligula",
     "142130": "Kõrvaltegelased",
     "135043": "Ringkäik Eesti Draamateatris",
@@ -12,6 +10,7 @@
     "141493": "Ükskord Liibanonis",
     "132769": "Skalpell",
     "69885": "Vaimude tund Koidula tänavas",
+    "97714": "Lehman Brothers",
     "144945": "Maag",
     "124614": "12 vihast meest",
     "147827": "Prima facie",
@@ -22,25 +21,12 @@
     "149249": "500 aastat sõprust",
     "133432": "Jõulusahver",
     "143097": "Eneseabiõpik",
+    "130852": "B-koondis",
     "148203": "Ühe naise võitlused ja metamorfoosid",
     "57427": "Pangalaen",
     "155163": "Lavalised segadused"
   },
   "events": {
-    "97714|24.11.2026|18:00": {
-      "pid": "97714",
-      "title": "Lehman Brothers",
-      "date": "24.11.2026",
-      "time": "18:00",
-      "link": null
-    },
-    "130852|24.11.2026|18:00": {
-      "pid": "130852",
-      "title": "B-koondis",
-      "date": "24.11.2026",
-      "time": "18:00",
-      "link": null
-    },
     "145868|25.11.2026|19:00": {
       "pid": "145868",
       "title": "Caligula",
