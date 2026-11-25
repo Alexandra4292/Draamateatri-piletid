@@ -1,9 +1,8 @@
 {
   "last_confirm": "2026-11-25",
   "productions": {
-    "145868": "Caligula",
-    "142130": "Kõrvaltegelased",
     "135043": "Ringkäik Eesti Draamateatris",
+    "145868": "Caligula",
     "124712": "Erakõnelused",
     "152226": "Tõde ja õigus",
     "153943": "Mets",
@@ -12,6 +11,7 @@
     "69885": "Vaimude tund Koidula tänavas",
     "97714": "Lehman Brothers",
     "144945": "Maag",
+    "142130": "Kõrvaltegelased",
     "124614": "12 vihast meest",
     "147827": "Prima facie",
     "115138": "Solist",
@@ -27,20 +27,6 @@
     "155163": "Lavalised segadused"
   },
   "events": {
-    "145868|25.11.2026|19:00": {
-      "pid": "145868",
-      "title": "Caligula",
-      "date": "25.11.2026",
-      "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153673/buy"
-    },
-    "142130|25.11.2026|19:00": {
-      "pid": "142130",
-      "title": "Kõrvaltegelased",
-      "date": "25.11.2026",
-      "time": "19:00",
-      "link": null
-    },
     "135043|26.11.2026|16:00": {
       "pid": "135043",
       "title": "Ringkäik Eesti Draamateatris",
