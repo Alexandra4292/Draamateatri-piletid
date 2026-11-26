@@ -39,7 +39,7 @@
       "title": "Caligula",
       "date": "26.11.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153674/buy"
     },
     "124712|26.11.2026|19:00": {
       "pid": "124712",
@@ -88,7 +88,7 @@
       "title": "Skalpell",
       "date": "30.11.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153729/buy"
     },
     "69885|30.11.2026|19:00": {
       "pid": "69885",
@@ -795,7 +795,7 @@
       "title": "12 vihast meest",
       "date": "11.02.2027",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/154961/buy"
     },
     "148203|11.02.2027|19:00": {
       "pid": "148203",
@@ -987,6 +987,7 @@
     "https://www.piletimaailm.com/performances/154961/buy": "2026-11-26T10:40:51+02:00",
     "https://www.piletimaailm.com/performances/155048/buy": "2026-11-26T10:40:51+02:00",
     "https://www.piletimaailm.com/performances/155082/buy": "2026-11-26T10:50:41+02:00",
-    "https://www.piletimaailm.com/performances/155077/buy": "2026-11-26T11:50:52+02:00"
+    "https://www.piletimaailm.com/performances/155077/buy": "2026-11-26T11:50:52+02:00",
+    "https://www.piletimaailm.com/performances/153729/buy": "2026-11-26T13:01:12+02:00"
   }
 }
