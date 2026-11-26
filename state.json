@@ -1,8 +1,6 @@
 {
   "last_confirm": "2026-11-26",
   "productions": {
-    "145868": "Caligula",
-    "124712": "Erakõnelused",
     "152226": "Tõde ja õigus",
     "153943": "Mets",
     "141493": "Ükskord Liibanonis",
@@ -19,28 +17,16 @@
     "147876": "Hamlet",
     "121675": "Võõrad",
     "149249": "500 aastat sõprust",
+    "124712": "Erakõnelused",
     "133432": "Jõulusahver",
     "143097": "Eneseabiõpik",
     "130852": "B-koondis",
+    "145868": "Caligula",
     "148203": "Ühe naise võitlused ja metamorfoosid",
     "57427": "Pangalaen",
     "155163": "Lavalised segadused"
   },
   "events": {
-    "145868|26.11.2026|19:00": {
-      "pid": "145868",
-      "title": "Caligula",
-      "date": "26.11.2026",
-      "time": "19:00",
-      "link": null
-    },
-    "124712|26.11.2026|19:00": {
-      "pid": "124712",
-      "title": "Erakõnelused",
-      "date": "26.11.2026",
-      "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153684/buy"
-    },
     "152226|27.11.2026|19:00": {
       "pid": "152226",
       "title": "Tõde ja õigus",
