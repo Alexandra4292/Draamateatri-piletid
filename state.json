@@ -1,7 +1,6 @@
 {
   "last_confirm": "2026-11-26",
   "productions": {
-    "135043": "Ringkäik Eesti Draamateatris",
     "145868": "Caligula",
     "124712": "Erakõnelused",
     "152226": "Tõde ja õigus",
@@ -12,6 +11,7 @@
     "97714": "Lehman Brothers",
     "144945": "Maag",
     "142130": "Kõrvaltegelased",
+    "135043": "Ringkäik Eesti Draamateatris",
     "124614": "12 vihast meest",
     "147827": "Prima facie",
     "115138": "Solist",
@@ -27,13 +27,6 @@
     "155163": "Lavalised segadused"
   },
   "events": {
-    "135043|26.11.2026|16:00": {
-      "pid": "135043",
-      "title": "Ringkäik Eesti Draamateatris",
-      "date": "26.11.2026",
-      "time": "16:00",
-      "link": null
-    },
     "145868|26.11.2026|19:00": {
       "pid": "145868",
       "title": "Caligula",
@@ -95,7 +88,7 @@
       "title": "Vaimude tund Koidula tänavas",
       "date": "30.11.2026",
       "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153739/buy"
+      "link": null
     },
     "97714|01.12.2026|19:00": {
       "pid": "97714",
@@ -109,7 +102,7 @@
       "title": "Maag",
       "date": "01.12.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153725/buy"
     },
     "69885|01.12.2026|19:00": {
       "pid": "69885",
@@ -988,6 +981,7 @@
     "https://www.piletimaailm.com/performances/155082/buy": "2026-11-26T10:50:41+02:00",
     "https://www.piletimaailm.com/performances/155077/buy": "2026-11-26T11:50:52+02:00",
     "https://www.piletimaailm.com/performances/153729/buy": "2026-11-26T13:01:12+02:00",
-    "https://www.piletimaailm.com/performances/153739/buy": "2026-11-26T14:50:39+02:00"
+    "https://www.piletimaailm.com/performances/153739/buy": "2026-11-26T14:50:39+02:00",
+    "https://www.piletimaailm.com/performances/153725/buy": "2026-11-26T16:10:43+02:00"
   }
 }
