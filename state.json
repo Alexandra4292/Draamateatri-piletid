@@ -39,14 +39,14 @@
       "title": "Caligula",
       "date": "26.11.2026",
       "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153674/buy"
+      "link": null
     },
     "124712|26.11.2026|19:00": {
       "pid": "124712",
       "title": "Erakõnelused",
       "date": "26.11.2026",
       "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153684/buy"
+      "link": null
     },
     "152226|27.11.2026|19:00": {
       "pid": "152226",
@@ -95,7 +95,7 @@
       "title": "Vaimude tund Koidula tänavas",
       "date": "30.11.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153739/buy"
     },
     "97714|01.12.2026|19:00": {
       "pid": "97714",
@@ -988,6 +988,7 @@
     "https://www.piletimaailm.com/performances/155048/buy": "2026-11-26T10:40:51+02:00",
     "https://www.piletimaailm.com/performances/155082/buy": "2026-11-26T10:50:41+02:00",
     "https://www.piletimaailm.com/performances/155077/buy": "2026-11-26T11:50:52+02:00",
-    "https://www.piletimaailm.com/performances/153729/buy": "2026-11-26T13:01:12+02:00"
+    "https://www.piletimaailm.com/performances/153729/buy": "2026-11-26T13:01:12+02:00",
+    "https://www.piletimaailm.com/performances/153739/buy": "2026-11-26T14:50:39+02:00"
   }
 }
