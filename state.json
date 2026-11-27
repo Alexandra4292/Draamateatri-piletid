@@ -27,20 +27,6 @@
     "155163": "Lavalised segadused"
   },
   "events": {
-    "152226|27.11.2026|19:00": {
-      "pid": "152226",
-      "title": "Tõde ja õigus",
-      "date": "27.11.2026",
-      "time": "19:00",
-      "link": null
-    },
-    "153943|27.11.2026|19:00": {
-      "pid": "153943",
-      "title": "Mets",
-      "date": "27.11.2026",
-      "time": "19:00",
-      "link": null
-    },
     "152226|28.11.2026|14:00": {
       "pid": "152226",
       "title": "Tõde ja õigus",
@@ -186,7 +172,7 @@
       "title": "Hamlet",
       "date": "08.12.2026",
       "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153843/buy"
+      "link": null
     },
     "153943|08.12.2026|19:00": {
       "pid": "153943",
