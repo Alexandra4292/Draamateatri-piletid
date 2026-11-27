@@ -88,14 +88,14 @@
       "title": "Maag",
       "date": "01.12.2026",
       "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153725/buy"
+      "link": null
     },
     "69885|01.12.2026|19:00": {
       "pid": "69885",
       "title": "Vaimude tund Koidula tänavas",
       "date": "01.12.2026",
       "time": "19:00",
-      "link": "https://www.piletimaailm.com/performances/153740/buy"
+      "link": null
     },
     "141493|02.12.2026|19:00": {
       "pid": "141493",
@@ -186,7 +186,7 @@
       "title": "Hamlet",
       "date": "08.12.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153843/buy"
     },
     "153943|08.12.2026|19:00": {
       "pid": "153943",
@@ -837,7 +837,7 @@
       "title": "Solist",
       "date": "16.02.2027",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/149152/buy"
     },
     "97714|17.02.2027|19:00": {
       "pid": "97714",
@@ -966,7 +966,8 @@
     "https://www.piletimaailm.com/performances/153729/buy": "2026-11-26T13:01:12+02:00",
     "https://www.piletimaailm.com/performances/153739/buy": "2026-11-26T14:50:39+02:00",
     "https://www.piletimaailm.com/performances/153725/buy": "2026-11-27T15:31:00+02:00",
-    "https://www.piletimaailm.com/performances/153843/buy": "2026-11-27T13:01:13+02:00",
-    "https://www.piletimaailm.com/performances/153740/buy": "2026-11-27T15:31:00+02:00"
+    "https://www.piletimaailm.com/performances/153843/buy": "2026-11-27T16:20:47+02:00",
+    "https://www.piletimaailm.com/performances/153740/buy": "2026-11-27T15:31:00+02:00",
+    "https://www.piletimaailm.com/performances/149152/buy": "2026-11-27T16:20:47+02:00"
   }
 }
