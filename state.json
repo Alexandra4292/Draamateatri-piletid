@@ -158,7 +158,7 @@
       "title": "Café Théâtral",
       "date": "07.12.2026",
       "time": "19:00",
-      "link": null
+      "link": "https://www.piletimaailm.com/performances/153942/buy"
     },
     "132769|07.12.2026|19:00": {
       "pid": "132769",
@@ -949,6 +949,7 @@
     "https://www.piletimaailm.com/performances/149152/buy": "2026-11-27T16:20:47+02:00",
     "https://www.piletimaailm.com/performances/153737/buy": "2026-11-27T18:50:48+02:00",
     "https://www.piletimaailm.com/performances/154961/buy": "2026-11-28T12:50:45+02:00",
-    "https://www.piletimaailm.com/performances/153947/buy": "2026-11-28T13:01:13+02:00"
+    "https://www.piletimaailm.com/performances/153947/buy": "2026-11-28T13:01:13+02:00",
+    "https://www.piletimaailm.com/performances/153942/buy": "2026-11-28T13:31:00+02:00"
   }
 }
