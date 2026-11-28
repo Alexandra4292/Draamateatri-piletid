@@ -1,8 +1,6 @@
 {
   "last_confirm": "2026-11-28",
   "productions": {
-    "152226": "Tõde ja õigus",
-    "153943": "Mets",
     "141493": "Ükskord Liibanonis",
     "132769": "Skalpell",
     "69885": "Vaimude tund Koidula tänavas",
@@ -12,6 +10,8 @@
     "135043": "Ringkäik Eesti Draamateatris",
     "124614": "12 vihast meest",
     "147827": "Prima facie",
+    "152226": "Tõde ja õigus",
+    "153943": "Mets",
     "115138": "Solist",
     "122639": "Café Théâtral",
     "147876": "Hamlet",
@@ -27,20 +27,6 @@
     "155163": "Lavalised segadused"
   },
   "events": {
-    "152226|28.11.2026|14:00": {
-      "pid": "152226",
-      "title": "Tõde ja õigus",
-      "date": "28.11.2026",
-      "time": "14:00",
-      "link": null
-    },
-    "153943|28.11.2026|14:00": {
-      "pid": "153943",
-      "title": "Mets",
-      "date": "28.11.2026",
-      "time": "14:00",
-      "link": null
-    },
     "141493|30.11.2026|19:00": {
       "pid": "141493",
       "title": "Ükskord Liibanonis",
@@ -935,6 +921,13 @@
       "title": "B-koondis",
       "date": "27.02.2027",
       "time": "12:00",
+      "link": null
+    },
+    "152226|06.03.2027|19:00": {
+      "pid": "152226",
+      "title": "Tõde ja õigus",
+      "date": "06.03.2027",
+      "time": "19:00",
       "link": null
     }
   },
